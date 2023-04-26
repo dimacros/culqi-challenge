@@ -1,0 +1,20 @@
+service: culqi-challenge
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  tokens:
+    handler: src/index.handler
+    events:
+      - httpApi:
+          path: /tokens
+          method: post
+      - httpApi:
+          path: /tokens/{token}
+          method: get
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
